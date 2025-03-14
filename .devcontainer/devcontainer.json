@@ -139,7 +139,11 @@
           "ms-toolsai.vscode-ai",
           "ms-toolsai.jupyter",
           "prompt-flow.prompt-flow",
-          "ms-python.black-formatter"
+          "ms-python.black-formatter",
+          //Azure function development
+          "ms-azuretools.vscode-azurefunctions",
+          "ms-azuretools.vscode-azureresourcegroups",
+          "azurite.azurite"
         ]
       }
     },
@@ -147,4 +151,3 @@
     // "postCreateCommand": ". ${NVM_DIR}/nvm.sh && nvm install v20.11.1",
     "onCreateCommand": "/bin/bash ./.devcontainer/on-create.bash"
   }
-  
