@@ -6,8 +6,8 @@ import requests
 app = func.FunctionApp()
 
 
-@app.route(route="GetAuthToken", auth_level=func.AuthLevel.ANONYMOUS)
-def GetAuthToken(req: func.HttpRequest) -> func.HttpResponse:
+@app.route(route="cs/token", auth_level=func.AuthLevel.ANONYMOUS)
+def RefreshCGToken(req: func.HttpRequest) -> func.HttpResponse:
     def get_sas_token():
         region = os.getenv("AZURE_REGION")
         subscription_key = os.getenv("AZURE_SUBSCRIPTION_KEY")
