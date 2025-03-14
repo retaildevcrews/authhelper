@@ -6,7 +6,7 @@ import requests
 app = func.FunctionApp()
 
 
-@app.route(route="cs/token", auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="cs/token", auth_level=func.AuthLevel.ANONYMOUS, methods=["POST"])
 def RefreshCGToken(req: func.HttpRequest) -> func.HttpResponse:
     def get_sas_token():
         region = os.getenv("AZURE_REGION")
