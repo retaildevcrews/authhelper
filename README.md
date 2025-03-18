@@ -27,7 +27,7 @@ The following environment variables must be set for the function to work:
 
 ## Usage
 
-Send an HTTP GET request to the endpoint `/cs/token` to retrieve a SAS token. Ensure that the environment variables are correctly configured before making the request.
+Send an HTTP POST request to the endpoint `/cs/token` to retrieve a SAS token. Ensure that the environment variables are correctly configured before making the request.
 
 ## License
 
