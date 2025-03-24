@@ -2,6 +2,7 @@ import azure.functions as func
 import logging
 import os
 import requests
+import json
 
 app = func.FunctionApp()
 
@@ -16,7 +17,7 @@ def RefreshCGToken(req: func.HttpRequest) -> func.HttpResponse:
             raise ValueError(
                 "AZURE_REGION and AZURE_SUBSCRIPTION_KEY environment variables must be set"
             )
-
+     
         url = f"https://{region}.api.cognitive.microsoft.com/sts/v1.0/issueToken"
         headers = {
             "Content-type": "application/x-www-form-urlencoded",
@@ -34,7 +35,15 @@ def RefreshCGToken(req: func.HttpRequest) -> func.HttpResponse:
     try:
         sas_token = get_sas_token()
         logging.info("SAS token retrieved successfully.")
-        return sas_token
+        return func.HttpResponse(
+            body=json.dumps({"sas_token": sas_token}),
+            mimetype="application/json",
+            status_code=200,
+        )
     except Exception as e:
         logging.error(f"Error retrieving SAS token: {e}")
-        return func.HttpResponse("Error retrieving SAS token.", status_code=500)
+        return func.HttpResponse(
+            body=json.dumps({"error": "Error retrieving SAS token."}),
+            mimetype="application/json",
+            status_code=500,
+        )
